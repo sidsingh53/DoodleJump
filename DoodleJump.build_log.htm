@@ -1,0 +1,72 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\Sid Singh\Documents\GitHub\lab-10-empty-repo-josh-sid\DoodleJump.uvproj
+Project File Date:  05/02/2018
+
+<h2>Output:</h2>
+Rebuild target 'SpaceInvaders'
+assembling startup.s...
+assembling random.s...
+compiling DAC.c...
+DAC.c(9): warning:  #550-D: variable "delay" was set but never used
+        uint8_t delay;
+DAC.c: 1 warning, 0 errors
+compiling ADC.c...
+compiling Timer0.c...
+compiling Timer1.c...
+compiling Sound.c...
+Sound.c(18): warning:  #223-D: function "DAC_Init" declared implicitly
+        DAC_Init();     //call the function to initialize the output ports
+Sound.c(19): warning:  #223-D: function "Timer2_Init" declared implicitly
+    Timer2_Init(SoundHandler, 9556);
+Sound.c(23): warning:  #223-D: function "DAC_Out" declared implicitly
+        DAC_Out(soundData); //Play note
+Sound.c: 3 warnings, 0 errors
+assembling LCD.s...
+assembling Print.s...
+compiling ST7735.c...
+compiling PLL.c...
+compiling Timer2.c...
+compiling DoodleJump.c...
+DoodleJump.c(679): warning:  #223-D: function "ADC_In" declared implicitly
+        slidePotX = Convert(ADC_In());                                                  //read the data from the adc
+DoodleJump.c(689): warning:  #223-D: function "Sound_Shoot" declared implicitly
+        Sound_Shoot();
+DoodleJump.c(735): warning:  #223-D: function "Sound_Jump" declared implicitly
+                                                Sound_Jump();
+DoodleJump.c(751): warning:  #223-D: function "Sound_Jump" declared implicitly
+                                                                Sound_Jump();
+DoodleJump.c(765): warning:  #223-D: function "Sound_Jump" declared implicitly
+                                                        Sound_Jump();
+DoodleJump.c(886): warning:  #223-D: function "Sound_MonsterDie" declared implicitly
+        Sound_MonsterDie(); //play sound
+DoodleJump.c(895): warning:  #223-D: function "ADC_Init" declared implicitly
+        ADC_Init();
+DoodleJump.c(896): warning:  #223-D: function "Sound_Init" declared implicitly
+        Sound_Init();
+DoodleJump.c(897): warning:  #223-D: function "ADC_In" declared implicitly
+    Random_Init(ADC_In());
+DoodleJump.c(945): warning:  #223-D: function "Timer0_Init" declared implicitly
+        Timer0_Init(Jump, 5000000);
+DoodleJump.c(955): warning:  #223-D: function "endGame" declared implicitly
+                                endGame(); //collision
+DoodleJump.c(960): warning:  #223-D: function "endGame" declared implicitly
+                                endGame(); //collision
+DoodleJump.c(975): warning:  #223-D: function "endGame" declared implicitly
+                        endGame();
+DoodleJump.c(987): warning:  #223-D: function "Timer1_Init" declared implicitly
+                        Timer1_Init(MoveBullet, 500000);
+DoodleJump.c(1021): warning:  #223-D: function "Sound_Die" declared implicitly
+        Sound_Die();
+DoodleJump.c(1032): warning:  #111-D: statement is unreachable
+        return(1);
+DoodleJump.c: 16 warnings, 0 errors
+linking...
+Program Size: Code=8992 RO-data=86640 RW-data=260 ZI-data=1244  
+".\DoodleJump.axf" - 0 Error(s), 20 Warning(s).
+</pre>
+</body>
+</html>
