@@ -1,9 +1,9 @@
 <!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 <html><head>
-<title>Static Call Graph - [.\DoodleJump.axf]</title></head>
+<title>Static Call Graph - [.\SpaceInvaders.axf]</title></head>
 <body><HR>
-<H1>Static Call Graph for image .\DoodleJump.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Wed May 02 16:35:25 2018
+<H1>Static Call Graph for image .\SpaceInvaders.axf</H1><HR>
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Wed May 02 15:27:37 2018
 <BR><P>
 <H3>Maximum Stack Usage =        168 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -70,7 +70,7 @@ Function Pointers
  <LI><a href="#[e]">GPIOPortB_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[f]">GPIOPortC_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[10]">GPIOPortD_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
- <LI><a href="#[11]">GPIOPortE_Handler</a> from doodlejump.o(i.GPIOPortE_Handler) referenced from startup.o(RESET)
+ <LI><a href="#[11]">GPIOPortE_Handler</a> from spaceinvaders.o(i.GPIOPortE_Handler) referenced from startup.o(RESET)
  <LI><a href="#[2b]">GPIOPortF_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[2c]">GPIOPortG_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[2d]">GPIOPortH_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
@@ -106,10 +106,10 @@ Function Pointers
  <LI><a href="#[62]">I2C4_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[63]">I2C5_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[41]">I2S0_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
- <LI><a href="#[80]">Jump</a> from doodlejump.o(i.Jump) referenced from doodlejump.o(i.main)
+ <LI><a href="#[80]">Jump</a> from spaceinvaders.o(i.Jump) referenced from spaceinvaders.o(i.main)
  <LI><a href="#[61]">LPC0_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[6]">MemManage_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
- <LI><a href="#[81]">MoveBullet</a> from doodlejump.o(i.MoveBullet) referenced from doodlejump.o(i.main)
+ <LI><a href="#[81]">MoveBullet</a> from spaceinvaders.o(i.MoveBullet) referenced from spaceinvaders.o(i.main)
  <LI><a href="#[4]">NMI_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[60]">PECI0_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[16]">PWM0Fault_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
@@ -134,7 +134,7 @@ Function Pointers
  <LI><a href="#[9]">SVC_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[7f]">SoundHandler</a> from sound.o(i.SoundHandler) referenced from sound.o(i.Sound_Init)
  <LI><a href="#[29]">SysCtl_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
- <LI><a href="#[c]">SysTick_Handler</a> from doodlejump.o(i.SysTick_Handler) referenced from startup.o(RESET)
+ <LI><a href="#[c]">SysTick_Handler</a> from spaceinvaders.o(i.SysTick_Handler) referenced from startup.o(RESET)
  <LI><a href="#[20]">Timer0A_Handler</a> from timer0.o(i.Timer0A_Handler) referenced from startup.o(RESET)
  <LI><a href="#[21]">Timer0B_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
  <LI><a href="#[22]">Timer1A_Handler</a> from timer1.o(i.Timer1A_Handler) referenced from startup.o(RESET)
@@ -739,10 +739,10 @@ Global Symbols
 <P><STRONG><a name="[a7]"></a>writedata</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillRect
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawBitmap
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAddrWindow
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pushColor
 <LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commandList
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawBitmap
 </UL>
 
 <P><STRONG><a name="[93]"></a>LCD_OutDec</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, print.o(.text))
@@ -769,8 +769,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
 <LI>Call Chain = __user_setup_stackheap
 </UL>
-<BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_perproc_libspace
-<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_initial_stackheap
+<BR>[Calls]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_initial_stackheap
+<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_perproc_libspace
 </UL>
 <BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_sh
 </UL>
@@ -810,7 +810,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[b8]"></a>Convert</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, doodlejump.o(i.Convert))
+<P><STRONG><a name="[b8]"></a>Convert</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, spaceinvaders.o(i.Convert))
 <BR><BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
 </UL>
@@ -830,7 +830,7 @@ Global Symbols
 <LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commandList
 </UL>
 
-<P><STRONG><a name="[99]"></a>Fall</STRONG> (Thumb, 454 bytes, Stack size 8 bytes, doodlejump.o(i.Fall))
+<P><STRONG><a name="[99]"></a>Fall</STRONG> (Thumb, 454 bytes, Stack size 8 bytes, spaceinvaders.o(i.Fall))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Fall &rArr; KillMonster
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KillMonster
@@ -839,21 +839,21 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Jump
 </UL>
 
-<P><STRONG><a name="[11]"></a>GPIOPortE_Handler</STRONG> (Thumb, 114 bytes, Stack size 8 bytes, doodlejump.o(i.GPIOPortE_Handler))
+<P><STRONG><a name="[11]"></a>GPIOPortE_Handler</STRONG> (Thumb, 114 bytes, Stack size 8 bytes, spaceinvaders.o(i.GPIOPortE_Handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = GPIOPortE_Handler
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sound_Shoot
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
 </UL>
-<P><STRONG><a name="[80]"></a>Jump</STRONG> (Thumb, 188 bytes, Stack size 8 bytes, doodlejump.o(i.Jump))
+<P><STRONG><a name="[80]"></a>Jump</STRONG> (Thumb, 168 bytes, Stack size 8 bytes, spaceinvaders.o(i.Jump))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = Jump &rArr; Fall &rArr; KillMonster
 </UL>
 <BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Fall
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> doodlejump.o(i.main)
+<BR>[Address Reference Count : 1]<UL><LI> spaceinvaders.o(i.main)
 </UL>
-<P><STRONG><a name="[9b]"></a>KillMonster</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, doodlejump.o(i.KillMonster))
+<P><STRONG><a name="[9b]"></a>KillMonster</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, spaceinvaders.o(i.KillMonster))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = KillMonster
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sound_MonsterDie
@@ -862,16 +862,16 @@ Global Symbols
 <LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Fall
 </UL>
 
-<P><STRONG><a name="[81]"></a>MoveBullet</STRONG> (Thumb, 570 bytes, Stack size 8 bytes, doodlejump.o(i.MoveBullet))
+<P><STRONG><a name="[81]"></a>MoveBullet</STRONG> (Thumb, 570 bytes, Stack size 8 bytes, spaceinvaders.o(i.MoveBullet))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72 + Unknown Stack Size
 <LI>Call Chain = MoveBullet &rArr; ST7735_DrawBitmap &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KillMonster
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawBitmap
+<BR>[Calls]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawBitmap
+<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KillMonster
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> doodlejump.o(i.main)
+<BR>[Address Reference Count : 1]<UL><LI> spaceinvaders.o(i.main)
 </UL>
-<P><STRONG><a name="[9f]"></a>NewPlatform</STRONG> (Thumb, 192 bytes, Stack size 8 bytes, doodlejump.o(i.NewPlatform))
+<P><STRONG><a name="[9f]"></a>NewPlatform</STRONG> (Thumb, 192 bytes, Stack size 8 bytes, spaceinvaders.o(i.NewPlatform))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72 + Unknown Stack Size
 <LI>Call Chain = NewPlatform &rArr; ST7735_DrawBitmap &rArr; setAddrWindow
 </UL>
@@ -895,7 +895,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a4]"></a>PortE_Init</STRONG> (Thumb, 174 bytes, Stack size 8 bytes, doodlejump.o(i.PortE_Init))
+<P><STRONG><a name="[a4]"></a>PortE_Init</STRONG> (Thumb, 174 bytes, Stack size 8 bytes, spaceinvaders.o(i.PortE_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
 <LI>Call Chain = PortE_Init
 </UL>
@@ -904,7 +904,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[bf]"></a>PortF_Init</STRONG> (Thumb, 70 bytes, Stack size 0 bytes, doodlejump.o(i.PortF_Init))
+<P><STRONG><a name="[bf]"></a>PortF_Init</STRONG> (Thumb, 70 bytes, Stack size 0 bytes, spaceinvaders.o(i.PortF_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -958,8 +958,8 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setAddrWindow
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writedata
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillScreen
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawCharS
+<BR>[Called By]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawCharS
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillScreen
 </UL>
 
 <P><STRONG><a name="[a3]"></a>ST7735_FillScreen</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, st7735.o(i.ST7735_FillScreen))
@@ -968,20 +968,20 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillRect
 </UL>
-<BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;endGame
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
+<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Output_Init
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;endGame
 </UL>
 
 <P><STRONG><a name="[a2]"></a>ST7735_InitR</STRONG> (Thumb, 90 bytes, Stack size 8 bytes, st7735.o(i.ST7735_InitR))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80 + Unknown Stack Size
 <LI>Call Chain = ST7735_InitR &rArr; ST7735_FillScreen &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetCursor
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillScreen
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commonInit
+<BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commonInit
 <LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commandList
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetCursor
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillScreen
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writedata
 <LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writecommand
 </UL>
@@ -1011,12 +1011,12 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[b0]"></a>ST7735_SetCursor</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, st7735.o(i.ST7735_SetCursor))
-<BR><BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;endGame
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
 </UL>
 
-<P><STRONG><a name="[b2]"></a>ScrollScreen</STRONG> (Thumb, 584 bytes, Stack size 16 bytes, doodlejump.o(i.ScrollScreen))
+<P><STRONG><a name="[b2]"></a>ScrollScreen</STRONG> (Thumb, 584 bytes, Stack size 16 bytes, spaceinvaders.o(i.ScrollScreen))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80 + Unknown Stack Size
 <LI>Call Chain = ScrollScreen &rArr; ST7735_DrawBitmap &rArr; setAddrWindow
 </UL>
@@ -1058,7 +1058,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPortE_Handler
 </UL>
 
-<P><STRONG><a name="[c]"></a>SysTick_Handler</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, doodlejump.o(i.SysTick_Handler))
+<P><STRONG><a name="[c]"></a>SysTick_Handler</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, spaceinvaders.o(i.SysTick_Handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SysTick_Handler
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Convert
@@ -1066,7 +1066,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
 </UL>
-<P><STRONG><a name="[c0]"></a>SysTick_Init</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, doodlejump.o(i.SysTick_Init))
+<P><STRONG><a name="[c0]"></a>SysTick_Init</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, spaceinvaders.o(i.SysTick_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -1099,7 +1099,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sound_Init
 </UL>
 
-<P><STRONG><a name="[ba]"></a>endGame</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, doodlejump.o(i.endGame))
+<P><STRONG><a name="[ba]"></a>endGame</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, spaceinvaders.o(i.endGame))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160 + Unknown Stack Size
 <LI>Call Chain = endGame &rArr; ST7735_OutString &rArr; ST7735_OutChar &rArr; ST7735_DrawString &rArr; ST7735_DrawCharS &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
@@ -1112,22 +1112,22 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[8d]"></a>main</STRONG> (Thumb, 1600 bytes, Stack size 8 bytes, doodlejump.o(i.main))
+<P><STRONG><a name="[8d]"></a>main</STRONG> (Thumb, 1602 bytes, Stack size 8 bytes, spaceinvaders.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168 + Unknown Stack Size
 <LI>Call Chain = main &rArr; endGame &rArr; ST7735_OutString &rArr; ST7735_OutChar &rArr; ST7735_DrawString &rArr; ST7735_DrawCharS &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;endGame
+<BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetCursor
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillScreen
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawBitmap
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PLL_Init
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Output_Init
+<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;endGame
 <LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Init
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ScrollScreen
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortF_Init
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortE_Init
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NewPlatform
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Convert
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PLL_Init
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_SetCursor
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_FillScreen
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawBitmap
-<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Output_Init
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_OutString
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OutDec
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sound_Init

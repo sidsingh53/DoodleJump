@@ -45,7 +45,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\</OutputDirectory>
-          <OutputName>DoodleJump</OutputName>
+          <OutputName>SpaceInvaders</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
@@ -451,6 +451,11 @@
               <FilePath>.\Print.s</FilePath>
             </File>
             <File>
+              <FileName>SpaceInvaders.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\SpaceInvaders.c</FilePath>
+            </File>
+            <File>
               <FileName>ST7735.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\ST7735.c</FilePath>
@@ -464,16 +469,6 @@
               <FileName>PLL.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\PLL.c</FilePath>
-            </File>
-            <File>
-              <FileName>Timer2.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\Keil\EE319KwareSpring2018\PeriodicTimer2AInts_4C123\Timer2.c</FilePath>
-            </File>
-            <File>
-              <FileName>DoodleJump.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\DoodleJump.c</FilePath>
             </File>
           </Files>
         </Group>

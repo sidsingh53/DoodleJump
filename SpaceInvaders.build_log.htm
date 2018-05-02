@@ -1,0 +1,81 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\Documents\GitHub\lab-10-empty-repo-josh-sid\SpaceInvaders.uvproj
+Project File Date:  05/01/2018
+
+<h2>Output:</h2>
+Rebuild target 'SpaceInvaders'
+assembling startup.s...
+assembling random.s...
+compiling DAC.c...
+DAC.c(8): warning:  #550-D: variable "delay" was set but never used
+        uint8_t delay;
+DAC.c: 1 warning, 0 errors
+compiling ADC.c...
+compiling Timer0.c...
+compiling Timer1.c...
+compiling Sound.c...
+Sound.c(22): warning:  #223-D: function "DAC_Init" declared implicitly
+        DAC_Init();     //call the function to initialize the output ports
+Sound.c(23): warning:  #223-D: function "Timer2_Init" declared implicitly
+    Timer2_Init(SoundHandler, 9556);
+Sound.c(27): warning:  #223-D: function "DAC_Out" declared implicitly
+        DAC_Out(soundData);
+Sound.c: 3 warnings, 0 errors
+assembling LCD.s...
+assembling Print.s...
+compiling SpaceInvaders.c...
+SpaceInvaders.c(700): warning:  #223-D: function "ADC_In" declared implicitly
+        slidePotX = Convert(ADC_In());                                                  //read the data from the adc
+SpaceInvaders.c(699): warning:  #177-D: variable "handlerData" was declared but never referenced
+        uint32_t handlerData;
+SpaceInvaders.c(713): warning:  #223-D: function "Sound_Shoot" declared implicitly
+        Sound_Shoot();
+SpaceInvaders.c(763): warning:  #223-D: function "Sound_Jump" declared implicitly
+                                                Sound_Jump();
+SpaceInvaders.c(779): warning:  #223-D: function "Sound_Jump" declared implicitly
+                                                                Sound_Jump();
+SpaceInvaders.c(793): warning:  #223-D: function "Sound_Jump" declared implicitly
+                                                        Sound_Jump();
+SpaceInvaders.c(915): warning:  #223-D: function "Sound_MonsterDie" declared implicitly
+        Sound_MonsterDie();
+SpaceInvaders.c(925): warning:  #223-D: function "ADC_Init" declared implicitly
+        ADC_Init();
+SpaceInvaders.c(926): warning:  #223-D: function "Sound_Init" declared implicitly
+        Sound_Init();
+SpaceInvaders.c(927): warning:  #223-D: function "ADC_In" declared implicitly
+    Random_Init(ADC_In());
+SpaceInvaders.c(979): warning:  #223-D: function "Timer0_Init" declared implicitly
+        Timer0_Init(Jump, 5000000);
+SpaceInvaders.c(989): warning:  #223-D: function "endGame" declared implicitly
+                                endGame();
+SpaceInvaders.c(994): warning:  #223-D: function "endGame" declared implicitly
+                                endGame();
+SpaceInvaders.c(1009): warning:  #223-D: function "endGame" declared implicitly
+                        endGame();
+SpaceInvaders.c(1021): warning:  #223-D: function "Timer1_Init" declared implicitly
+                        Timer1_Init(MoveBullet, 750000);
+SpaceInvaders.c(923): warning:  #177-D: variable "n" was declared but never referenced
+        uint8_t n = 0;
+SpaceInvaders.c(1055): warning:  #223-D: function "Sound_Die" declared implicitly
+        Sound_Die();
+SpaceInvaders.c(1066): warning:  #111-D: statement is unreachable
+        return(1);
+SpaceInvaders.c: 18 warnings, 0 errors
+compiling ST7735.c...
+compiling PLL.c...
+compiling Timer2.c...
+linking...
+Program Size: Code=9000 RO-data=86640 RW-data=260 ZI-data=1244  
+".\SpaceInvaders.axf" - 0 Error(s), 22 Warning(s).
+Load "D:\\Documents\\GitHub\\lab-10-empty-repo-josh-sid\\SpaceInvaders.axf" 
+Connecting: Mode=JTAG, Speed=1000000Hz
+Erase Done.
+Programming Done.
+Verify OK.
+</pre>
+</body>
+</html>

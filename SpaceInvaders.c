@@ -1,8 +1,30 @@
 // DoodleJump.c
 // Runs on LM4F120/TM4C123
-// Student names: Sid Singh & Josh Kall
-// Last modification date: 5/2/18
+// Jonathan Valvano and Daniel Valvano
+// This is a starter project for the EE319K Lab 10
 
+// Last Modified: 11/21/2017 
+// http://www.spaceinvaders.de/
+// sounds at http://www.classicgaming.cc/classics/spaceinvaders/sounds.php
+// http://www.classicgaming.cc/classics/spaceinvaders/playguide.php
+/* This example accompanies the books
+   "Embedded Systems: Real Time Interfacing to Arm Cortex M Microcontrollers",
+   ISBN: 978-1463590154, Jonathan Valvano, copyright (c) 2017
+
+   "Embedded Systems: Introduction to Arm Cortex M Microcontrollers",
+   ISBN: 978-1469998749, Jonathan Valvano, copyright (c) 2017
+
+ Copyright 2017 by Jonathan W. Valvano, valvano@mail.utexas.edu
+    You may use, edit, run or distribute this file
+    as long as the above copyright notice remains
+ THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
+ OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+ MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
+ VALVANO SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL,
+ OR CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+ For more information about my classes, my research, and my books, see
+ http://users.ece.utexas.edu/~valvano/
+ */
 // ******* Possible Hardware I/O connections*******************
 // Slide pot pin 1 connected to ground
 // Slide pot pin 2 connected to PE2/AIN1
@@ -59,13 +81,13 @@ uint32_t outData;
 uint8_t jumpCount = 0;
 uint8_t hitPlatform = 0;
 
-uint32_t Convert(uint32_t input){ //convert for ADC values
+uint32_t Convert(uint32_t input){
 	uint32_t solution = 0;
 	solution = (256*input)/10000;
   return (solution);
 }
 
-void	PortF_Init(){ //initialize
+void	PortF_Init(){
 	uint8_t nothing = 0;
 	SYSCTL_RCGCGPIO_R |= 0x30;
 	nothing++;
@@ -79,7 +101,7 @@ void	PortF_Init(){ //initialize
 	GPIO_PORTE_DEN_R	|= 0x02;
 }
 
-void PortE_Init(){ //initialize
+void PortE_Init(){
 	SYSCTL_RCGCGPIO_R |= 0x11;
 	GPIO_PORTE_DIR_R &= ~0x11;
 	GPIO_PORTE_AFSEL_R &= ~0x10;
@@ -97,7 +119,7 @@ void PortE_Init(){ //initialize
 }
 	
 
-// *************************** objects ***************************
+// *************************** Images ***************************
 typedef enum {live, dead} state_t;
 
 struct bullet{
@@ -130,8 +152,6 @@ struct Bullet{
 typedef struct Bullet bullet_t;
 bullet_t bullet[5];
 
-
-// *************************** sprites ***************************
 const unsigned short TitleScreen[] = {
  0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF,
  0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF,
@@ -424,6 +444,7 @@ const unsigned short TitleScreen[] = {
  0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF,
 };
 	
+// image of the doodle
 const unsigned short Doodle[] = {
  0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF,
  0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0x0000, 0x0000, 0xFFFF, 0x0000, 0x0000, 0xFFFF, 0x0000, 0x0000, 0xFFFF, 0x0000, 0x0000, 0xFFFF,
@@ -637,6 +658,7 @@ monsters monster3 = {
 
 monsters *monsterArray[3] = {&monster1, &monster2, &monster3};
 
+// width=32 x height=32
 const unsigned short platform[] = {
  0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF,
  0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0x15E5, 0x15E5, 0x15E5, 0x15E5, 0x15E5, 0x15E5, 0x15E5, 0x15E5, 0x15E5, 0x15E5, 0x15E5, 0x15E5,
@@ -666,8 +688,6 @@ const unsigned short Spring[] = {
  0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF,
 };
 
-
-
 void	SysTick_Init(void){
 	NVIC_ST_CTRL_R = 0;			//disable the timer
 	NVIC_ST_CURRENT_R = 0;	//initialize systick timer
@@ -676,7 +696,9 @@ void	SysTick_Init(void){
 }
 
 void	SysTick_Handler(){
+	uint32_t handlerData;
 	slidePotX = Convert(ADC_In());							//read the data from the adc
+	//ST7735_DrawBitmap(slidePotX, spriteY, Doodle, 27, 23);
 }
 
 void GPIOPortE_Handler(void){
@@ -686,11 +708,13 @@ void GPIOPortE_Handler(void){
 	bullet[i].x = doodleX + 7;
 	bullet[i].y = spriteY - 19;
 	bullet[i].status = live;
+	//ST7735_FillRect(bulletX, bulletY, 4, 4, 0);
+	//
 	Sound_Shoot();
 	bulletFlag = 1;
 }
 
-void Jump(void){ //function to move sprite vertically
+void Jump(void){
 	if(hitSpring == 0){
 		Fall();
 		if(stillFalling == 0){
@@ -700,18 +724,20 @@ void Jump(void){ //function to move sprite vertically
 				TIMER0_TAILR_R = TIMER0_TAILR_R + 75000;
 			}
 			if(jumpCount == 25){
-				jumpCount = 0;
-				TIMER0_TAILR_R = 5000000;	
+				TIMER0_TAILR_R = 5000000;
+				jumpCount = 0;	
 			}
 			if(jumpCount == 7){
 				hitPlatform = 0;
 			}
 			if(jumpCount == 0){
+				//TIMER0_TAILR_R = 1000000;
 			}
+			//TIMER0_TAILR_R = TIMER0_TAILR_R + 100000;
 		}
 		if(stillFalling == 1){
 			if(TIMER0_TAILR_R > 1000000){
-				TIMER0_TAILR_R = TIMER0_TAILR_R - 100000;
+				//TIMER0_TAILR_R = TIMER0_TAILR_R - 100000;
 			}
 		}
 	}
@@ -730,7 +756,7 @@ void Jump(void){ //function to move sprite vertically
 
 void Fall(void){
 	if(jumpCount == 0){
-		if(springFlag == 1){ //detect when to jump from spring
+		if(springFlag == 1){
 			if((spriteY + 2) == springY){
 				if((doodleX + 14) >= springX){
 					if((doodleX + 1) <= (springX + 9)){
@@ -743,7 +769,7 @@ void Fall(void){
 			}
 		}
 	}
-	if(hitSpring == 0){ //detect when to jump from platform
+	if(hitSpring == 0){
 		if(jumpCount == 0){
 			for(i=0;i<8;i++){
 				if (spriteY <= pf[i].y - 4){
@@ -759,7 +785,7 @@ void Fall(void){
 				}
 			}
 		}
-		if(hitSpring == 0){ //detect when to jump from monster
+		if(hitSpring == 0){
 			if(jumpCount == 0){
 				if(spriteY == (monsterArray[randomMonster]->y - monsterArray[randomMonster]->h + 1)){
 					if((doodleX + 14) >= (monsterArray[randomMonster]->x + 1)){
@@ -778,8 +804,8 @@ void Fall(void){
 		if(hitSpring == 0){
 			if(jumpCount == 0){
 				if(hitPlatform == 0){
-					spriteY++; //gravity
-					if(TIMER0_TAILR_R > 1500000){
+					spriteY++;
+					if(TIMER0_TAILR_R > 1000000){
 						TIMER0_TAILR_R = TIMER0_TAILR_R - 400000;
 					}
 					stillFalling = 1;
@@ -792,7 +818,7 @@ void Fall(void){
 	}
 }
 
-void ScrollScreen(){ //function to reprint all sprites and to move sprites up to "scroll screen"
+void ScrollScreen(){
 	score++;
 	if(springFlag == 1){
 		springY++;
@@ -803,16 +829,16 @@ void ScrollScreen(){ //function to reprint all sprites and to move sprites up to
 		}
 	}
 	for(i=0;i<8;i++){
-		pf[i].y++; //move platforms up
+		pf[i].y++;
 	}
 	spriteY++;
 	for(i=0;i<3;i++){
 		if(monsterArray[randomMonster]->status == live){
-			monsterAlive =1; //check if monsters are alive
+			monsterAlive =1;
 		}
 	}
 	if(monsterAlive == 0){
-		if((score % (150 + (Random32() % 361))) == 0){ //print monsters every set amount of pixels scrolled
+		if((score % (150 + (Random32() % 361))) == 0){
 			randomMonster = Random32() % 3;
 			monsterArray[randomMonster]->x = Random32() % (126 - monsterArray[randomMonster]->w);
 			monsterArray[randomMonster]->y = monsterArray[randomMonster]->h;
@@ -830,13 +856,13 @@ void ScrollScreen(){ //function to reprint all sprites and to move sprites up to
 		ST7735_DrawBitmap(monsterArray[randomMonster]->x, monsterArray[randomMonster]->y, monsterArray[randomMonster]->name, monsterArray[randomMonster]->w, monsterArray[randomMonster]->h);
 	}
 	for(i=0;i<8;i++){
-		ST7735_DrawBitmap(pf[i].x, pf[i].y, platform, 20, 5); //redraw platforms
+		ST7735_DrawBitmap(pf[i].x, pf[i].y, platform, 20, 5);
 	}
-	ST7735_DrawBitmap(doodleX, spriteY, Doodle, 16, 19); //redraw sprite
+	ST7735_DrawBitmap(doodleX, spriteY, Doodle, 16, 19);
 }
 
 void NewPlatform(){
-	ST7735_DrawBitmap(pf[i].x, pf[i].y, platform, 20, 5); //draw new random platforms when screen scrolls
+	ST7735_DrawBitmap(pf[i].x, pf[i].y, platform, 20, 5);
 	pf[i].x = Random32() % 105;
 	pf[i].y = 20;
 	ST7735_DrawBitmap(pf[i].x, pf[i].y, platform, 20, 5);
@@ -849,34 +875,34 @@ void NewPlatform(){
 }
 
 void MoveBullet(){
-	for(i=0;bullet[i].status==live;i++){ //bullet moving up
+	for(i=0;bullet[i].status==live;i++){
 		bullet[i].y--;
 	}
-	for(i=0;bullet[i].status==live;i++){ //check for collison
+	for(i=0;bullet[i].status==live;i++){
 		if(bullet[i].y == 0){
 			ST7735_DrawBitmap(bullet[i].x, bullet[i].y, eraseBullet, 4, 4);
 			bullet[i].status = dead;
 		}
 	}
-	for(i=0;i<5;i++){ //max 5 bullets
+	for(i=0;i<5;i++){
 		if(bullet[i].status == live){
 			noBullets = 0;
 		}
 	}
 	if(noBullets == 1){
-		TIMER1_CTL_R = 0x00000000; //reset timer
+		TIMER1_CTL_R = 0x00000000;
 	}
 	for(i=0;bullet[i].status == live;i++){
 		if(bullet[i].y > 0){
-			moveBullet = 1; //check for live bullets
+			moveBullet = 1;
 		}
 	}
-	for(i=0;i<3;i++){ //check for alive monsters
+	for(i=0;i<3;i++){
 		if(monsterArray[i]->status == live){
 			checkForHit = 1;
 		}
 	}
-	for(i=0;bullet[i].status == live;i++){ //check for collision
+	for(i=0;bullet[i].status == live;i++){
 		if(((bullet[i].y - 3) == (monsterArray[randomMonster]->y - 1)) & ((bullet[i].x + 2) >= (monsterArray[randomMonster]->x + 1)) & ((bullet[i].x + 2) <= (monsterArray[randomMonster]->x + (monsterArray[randomMonster]->w + 1)))){
 			KillMonster();
 			bullet[i].status = dead;
@@ -885,7 +911,8 @@ void MoveBullet(){
 }
 
 void KillMonster(void){
-	Sound_MonsterDie(); //play sound
+	//TIMER1_CTL_R = 0x00000000;
+	Sound_MonsterDie();
 	killTheMonster = 1;
 	monsterArray[randomMonster]->status = dead;
 	monsterAlive = 0;
@@ -893,6 +920,7 @@ void KillMonster(void){
 
 // *************************** Capture image dimensions out of BMP**********
 int main(void){
+	uint8_t n = 0;
   PLL_Init(Bus80MHz);       // Bus clock is 80 MHz 
 	ADC_Init();
 	Sound_Init();
@@ -901,6 +929,7 @@ int main(void){
 	PortF_Init();
 	Random_Init(ADC_In());
   ST7735_FillScreen(0xFFFF);            // set screen to white
+	//ST7735_DrawBitmap(50, 50, Doodle, 27,23);
 	ST7735_DrawBitmap(24, 66, TitleScreen, 81, 57);
 	ST7735_SetCursor(2, 8);
   ST7735_OutString("Push right button");
@@ -911,7 +940,7 @@ int main(void){
 	ST7735_SetCursor(6, 12);
 	ST7735_OutString("to shoot");
 	ST7735_SetCursor(2, 14);
-  ST7735_OutString("Use slider to move"); //start screen1
+  ST7735_OutString("Use slider to move");
 	while((GPIO_PORTE_DATA_R & 0x02) != 0){
 	} //check for press
 	while((GPIO_PORTE_DATA_R & 0x02) != 2){
@@ -925,7 +954,7 @@ int main(void){
 	ST7735_SetCursor(2, 11);
 	ST7735_OutString("Push right button");
 	ST7735_SetCursor(6, 12);
-	ST7735_OutString("to start"); //start screen2
+	ST7735_OutString("to start");
 	while((GPIO_PORTE_DATA_R & 0x02) != 0){
 	} //check for press
 	while((GPIO_PORTE_DATA_R & 0x02) != 2){
@@ -935,31 +964,34 @@ int main(void){
 	for(i=0;i<5;i++){
 		bullet[i].status = dead;
 	}
-  for(i=0;i<8;i++){ //random platforms
+  for(i=0;i<8;i++){
 		pf[i].x = Random32() % 105;
 		pf[i].y = (i * 20) + 20;
 		ST7735_DrawBitmap(pf[i].x, pf[i].y, platform, 20, 5);
 	}
-
-	slidePotX = Convert(ADC_In()); //convert
+		
+	//ST7735_DrawBitmap(30, 50, Monster1, 23, 28);
+	//ST7735_DrawBitmap(70, 50, Monster2, 31, 37);
+	//ST7735_DrawBitmap(50, 90, Monster3, 23, 27);
+	slidePotX = Convert(ADC_In());
 	ST7735_DrawBitmap(doodleX, spriteY, Doodle, 16, 19); // doodle begin position
 	SysTick_Init();
 	Timer0_Init(Jump, 5000000);
   while(1){	
-		if(doodleX < slidePotX){ //move doodle
+		if(doodleX < slidePotX){
 			doodleX++;
 		}
-		if(doodleX > slidePotX){ //move doodle
+		if(doodleX > slidePotX){
 			doodleX--;
 		}
 		if(((doodleX + 15) == (monsterArray[randomMonster]->x + 1)) | ((doodleX + 1) == (monsterArray[randomMonster]->x + monsterArray[randomMonster]->w - 1))){
 			if((((spriteY - 18) <= (monsterArray[randomMonster]->y - 1)) & ((spriteY - 18) >= (monsterArray[randomMonster]->y - monsterArray[randomMonster]->h + 1))) | (((spriteY - 1) <=  (monsterArray[randomMonster]->y - 1)) & ((spriteY - 1) >= (monsterArray[randomMonster]->y - monsterArray[randomMonster]->h + 1)))){
-				endGame(); //collision
+				endGame();
 			}
 		}
 		if((spriteY - 18) == (monsterArray[randomMonster]->y - 1)){
 			if((((doodleX + 1) >= (monsterArray[randomMonster]->x + 1)) & ((doodleX + 1) <= (monsterArray[randomMonster]->x + monsterArray[randomMonster]->w - 1))) | (((doodleX + 15) >= (monsterArray[randomMonster]->x + 1)) & ((doodleX + 15) <= (monsterArray[randomMonster]->x + monsterArray[randomMonster]->w - 1)))){
-				endGame(); //collision
+				endGame();
 			}
 		}
 		//if((spriteY + 15) == (monsterArray[randomMonster]->y -1))
@@ -986,7 +1018,7 @@ int main(void){
 		}
 		if(bulletFlag == 1){
 			ST7735_DrawBitmap(bulletX, bulletY, Bullet, 4, 4);
-			Timer1_Init(MoveBullet, 500000);
+			Timer1_Init(MoveBullet, 750000);
 			bulletFlag = 0;
 		}
 		if(moveBullet == 1){
@@ -1006,9 +1038,9 @@ int main(void){
 	}
 }
 
+// You can use this timer only if you learn how it works
 
 void Delay100ms(uint32_t count){uint32_t volatile time;
-	
   while(count>0){
     time = 181810;  // 0.025sec at 80 MHz
     while(time){
@@ -1027,7 +1059,7 @@ int endGame(){
 	ST7735_SetCursor(4, 9);
   ST7735_OutString("Your score is");
 	ST7735_SetCursor(8, 10);
-  LCD_OutDec(score);
+  LCD_OutDec(score); // put variable for score instead of 1234
 	while(1)
 	{
 	}
